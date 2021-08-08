@@ -14,8 +14,11 @@
 Помимо кнопки “Показать еще” реализовать навигацию по комментариям с помощью пагинации
 						
 Запросы к апи отправлять на роуты:
+
 ## METHODS:
-· GET https://jordan.ashton.fashion/api/goods/30/comments 
+
+· GET https://jordan.ashton.fashion/api/goods/30/comments
+
 · POST https://jordan.ashton.fashion/api/goods/30/comments
 
 ## Отправка данных в формате JSON

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CommentariesLink = ({ link, getComments }) => {
+const Link = ({ link, getComments }) => {
     return(
         <button 
             className='commentary_link'
@@ -11,4 +11,4 @@ const CommentariesLink = ({ link, getComments }) => {
     );
 };
 
-export default CommentariesLink;
+export default Link;

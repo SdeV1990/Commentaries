@@ -1,9 +1,9 @@
 import React from 'react';
 
 // Components
-import CommentariesLink from './CommentariesLink'
+import Link from './Link'
 
-const CommentariesLinks = ( { linksArray, getComments } ) => {
+const LinksList = ( { linksArray, getComments } ) => {
     return(
         <div className='commentary_pagination_links'>
             {linksArray.map((link, linkIndex)=> {
@@ -17,7 +17,7 @@ const CommentariesLinks = ( { linksArray, getComments } ) => {
                     ?
                         <span key={`pagination_link${linkIndex}`} >{link.label}</span>  
                     :
-                        <CommentariesLink 
+                        <Link 
                             link={link} 
                             key={`pagination_link${linkIndex}`} 
                             getComments={getComments}
@@ -28,4 +28,4 @@ const CommentariesLinks = ( { linksArray, getComments } ) => {
     );
 };
 
-export default CommentariesLinks;
+export default LinksList;

@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import CommentariesLinks from './CommentariesLinks/CommentariesLinks';
+import LinksList from './Links/LinksList';
 import Commentary from './Commentary';
 
 const CommentariesList = ({ commentariesState, getComments, handleShowMoreClick }) => {
@@ -22,7 +22,7 @@ const CommentariesList = ({ commentariesState, getComments, handleShowMoreClick 
                         Show more...
                     </button>
             }
-            <CommentariesLinks linksArray={commentariesState.links} getComments={getComments} />
+            <LinksList linksArray={commentariesState.links} getComments={getComments} />
         </div>
     );
 };

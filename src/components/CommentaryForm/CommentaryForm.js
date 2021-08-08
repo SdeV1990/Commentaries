@@ -27,14 +27,15 @@ const CommentaryForm = ( {titleText, initialURL, lastPageUrl, getComments } ) =>
                     setFormState({
                         ...formState, 
                         text: '',
-                        isSubmitButtonActive: false
+                        isSubmitButtonActive: false,
+                        captureText: ''
                     });
                     getComments(lastPageUrl);
                 }, 
                 formState);
         }
         catch(error) {
-            console.log('Error')
+            console.log(error);
             setFormState({
                 ...formState, 
                 captureText: 'Error! Message wasn not been sended!'
@@ -43,23 +44,20 @@ const CommentaryForm = ( {titleText, initialURL, lastPageUrl, getComments } ) =>
 
     }
 
-    const handleNameChange = (event)=> {
-        localStorage.setItem('name', event.target.value);
+    const handleFieldChange = ( event, fieldName ) => {
+        console.log(fieldName)
+        localStorage.setItem(fieldName, event.target.value);
         setFormState({ 
             ...formState, 
-            name: event.target.value, 
-            isSubmitButtonActive: event.target.value !== '' && formState.text !== ''
+            [fieldName]: event.target.value, 
+            isSubmitButtonActive: event.target.value !== '' && formState[fieldName] !== ''
         });
-    };
+    }
 
-    const handleTextChange = (event)=>{
-        localStorage.setItem('text', event.target.value);
-        setFormState({
-            ...formState, 
-            text: event.target.value,
-            isSubmitButtonActive: formState.name !== '' && event.target.value !== ''
-        })
-    };
+    const handleNameChange = (event) => handleFieldChange( event, 'name');
+    const handleTextChange = (event) => handleFieldChange( event, 'text');
+
+    console.log(formState)
 
     return (
         <form name='commentary_form'className='commentary_form_wrapper' onSubmit={submitHandler} >
