@@ -6,6 +6,9 @@ import Commentary from './Commentary';
 
 const CommentariesList = ({ commentariesState, getComments, handleShowMoreClick }) => {
     return (
+        commentariesState.data.lenght === 0 ?
+        <span>No comments...</span>
+        :
         <div className='commentaries_list_wrapper'>
             <ul className='commentaries_list'>
                 { commentariesState.data.map( commentary => {

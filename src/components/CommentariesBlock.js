@@ -89,7 +89,7 @@ const CommentariesBlock = ({ initialURL }) => {
         );
     };
 
-    console.log(commentariesState);
+    // console.log(commentariesState);
 
     return ( 
             commentariesState === null ?
