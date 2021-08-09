@@ -6,7 +6,7 @@ const postHTTPRequest = (url, callBackFucntion, data ) => {
     xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
     xhr.send( JSON.stringify(data) );
     xhr.onload = callBackFucntion;
-}
+};
 
 const CommentaryForm = ( {titleText, initialURL, lastPageUrl, getComments } ) => {
 
@@ -35,35 +35,34 @@ const CommentaryForm = ( {titleText, initialURL, lastPageUrl, getComments } ) =>
                 formState);
         }
         catch(error) {
-            console.log(error);
+            // console.log(error);
             setFormState({
                 ...formState, 
                 captureText: 'Error! Message wasn not been sended!'
             });
         }
-
-    }
+    };
 
     const handleFieldChange = ( event, fieldName ) => {
-        console.log(fieldName)
+        // console.log(fieldName)
         localStorage.setItem(fieldName, event.target.value);
         setFormState({ 
             ...formState, 
             [fieldName]: event.target.value, 
             isSubmitButtonActive: event.target.value !== '' && formState[fieldName] !== ''
         });
-    }
+    };
 
     const handleNameChange = (event) => handleFieldChange( event, 'name');
     const handleTextChange = (event) => handleFieldChange( event, 'text');
 
-    console.log(formState)
+    // console.log(formState)
 
     return (
         <form name='commentary_form'className='commentary_form_wrapper' onSubmit={submitHandler} >
             <h2 className='commentary_form_title'>{titleText}</h2>
-            <input className='commentary_form_input' type='text' name="name" placeholder='Enter your name' onChange={handleNameChange} value={formState.name}></input>
-            <textarea className='commentary_form_input' name="text" placeholder='Enter text of commentary' onChange={handleTextChange} value={formState.text}></textarea>
+            <input className='commentary_form_name_input' type='text' name="name" placeholder='Enter your name' required onChange={handleNameChange} value={formState.name}></input>
+            <textarea className='commentary_form_text_input' name="text" placeholder='Enter text of commentary' required onChange={handleTextChange} value={formState.text}></textarea>
             <button className='commentary_form_button_send_active'  disabled={!formState.isSubmitButtonActive} >Send</button>
             <p className='commentary_form_capture'>{formState.captureText}</p>
         </form>

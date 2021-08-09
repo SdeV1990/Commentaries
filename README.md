@@ -29,3 +29,9 @@
 ### От себя
 
 Решил реализовать без Axios, Redux. Только через http requests.
+
+Поскольку не было макета, вёрстку особо не делал, но потом применю Material UI.
+
+Как верстаю, можно посмотреть на примере другого таска: 
+
+https://github.com/SdeV1990/practice/tree/master/chuck_norris

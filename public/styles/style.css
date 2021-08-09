@@ -1,0 +1,89 @@
+.commentaries_block_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.commentary_form_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin: 5px;
+    width: 50%;
+}
+
+.commentary_form_title{
+    text-align: center;
+}
+
+.commentary_form_text_input {
+    resize: vertical;
+}
+
+
+.commentary_form_capture {
+    margin: 5px;
+    color: #ff0000;
+}
+
+.commentaries_list_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.commentaries_list {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin: 5px;
+    padding: 0px;
+    width: 50vw;
+}
+
+.commentary_item_wrapper {
+    display: block;
+    border: 1px #808080 solid;
+    margin: 5px;
+    padding: 5px;
+}
+
+.commentary_name {
+    font-weight: bold;
+    word-wrap: break-word;
+    padding: 5px;
+}
+
+.commentary_text {
+    word-wrap: break-word;
+    padding: 5px;
+}
+
+.commentary_date {
+    padding: 5px;
+    text-align: right;
+}
+
+.commentaries_pagination_description {
+    text-align: center;
+    margin: 5px;
+}
+
+.showMoreButton{
+    width: 150px;
+    margin: 5px;
+}
+
+.commentary_pagination_links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 50vw;
+    margin: 5px;
+}
+
+.commentary_link {
+    margin: 5px;
+}

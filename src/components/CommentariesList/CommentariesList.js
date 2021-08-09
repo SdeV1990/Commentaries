@@ -7,18 +7,18 @@ import Commentary from './Commentary';
 const CommentariesList = ({ commentariesState, getComments, handleShowMoreClick }) => {
     return (
         <div className='commentaries_list_wrapper'>
-            <div className='commentaries_list'>
+            <ul className='commentaries_list'>
                 { commentariesState.data.map( commentary => {
                     return(
                         <Commentary commentary={commentary} key={ 'commentaryKey-' + commentary.id } />
                     );
                 })}
-            </div>
-            <p>{ `Messages from ${commentariesState.from} to ${commentariesState.to}` }</p>
+            </ul>
+            <p className='commentaries_pagination_description'>{ `Messages from ${commentariesState.from} to ${commentariesState.to}` }</p>
             { 
                 commentariesState.to === commentariesState.total ? 
                     null : 
-                    <button className='showMoreButton_active' onClick={ () => handleShowMoreClick() }>
+                    <button className='showMoreButton' onClick={ () => handleShowMoreClick() }>
                         Show more...
                     </button>
             }

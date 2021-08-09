@@ -15,7 +15,7 @@ const LinksList = ( { linksArray, getComments } ) => {
                 return (
                         link.active === true || link.url === null
                     ?
-                        <span key={`pagination_link${linkIndex}`} >{link.label}</span>  
+                        <span className='commentary_link' key={`pagination_link${linkIndex}`} >{link.label}</span>  
                     :
                         <Link 
                             link={link} 

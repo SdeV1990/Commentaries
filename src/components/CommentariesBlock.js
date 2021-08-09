@@ -4,22 +4,23 @@ import React, { useEffect, useState } from 'react';
 import CommentaryForm from './CommentaryForm/CommentaryForm';
 import CommentariesList from './CommentariesList/CommentariesList';
 
-const getHTTPRequest = (url, callBackFucntion ) => {
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", url);
-    xhr.send();
-    xhr.onload = callBackFucntion;
-}
-
-const  deletePreviousOrNextLinks = (state) => {
-    if ( state.current_page === 1) state.links.shift(0);
-    if ( state.last_page === state.current_page) state.links.splice(state.links.length-1);
-    return state
-}
-
 const CommentariesBlock = ({ initialURL }) => {
 
     const [commentariesState, setCommentariesState] = useState(null)
+
+    // Delete links depending on current page number
+    const  deletePreviousOrNextLinks = (state) => {
+        if ( state.current_page === 1) state.links.shift(0);
+        if ( state.last_page === state.current_page) state.links.splice(state.links.length-1);
+        return state
+    };
+
+    const getHTTPRequest = (url, callBackFucntion ) => {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+        xhr.send();
+        xhr.onload = callBackFucntion;
+    };
 
     // Initalizing
     useEffect( () => {
@@ -41,8 +42,8 @@ const CommentariesBlock = ({ initialURL }) => {
                 response = deletePreviousOrNextLinks(response);
                 setCommentariesState(response);
             }
-        )
-    }
+        );
+    };
 
     const handleShowMoreClick = async () => {
 
@@ -53,12 +54,24 @@ const CommentariesBlock = ({ initialURL }) => {
             (event) => {
                 //console.log(JSON.parse(event.target.response));
 
-                // Get new array of links
+                // Create new array of links
+
+                // Get start page from current links array
                 let pageFrom = commentariesState.links.findIndex(link => link.active);
+
+                // Get end page from response links array
                 let pageTo = JSON.parse(event.target.response).links.findIndex( link => link.active);
+
+                // Get array of current links
                 let currentLinks = commentariesState.links.slice(0, pageFrom + 1 );
+
+                // Replace label of current page on current range pages
                 currentLinks[currentLinks.length-1].label = `${commentariesState.current_page}-${JSON.parse(event.target.response).current_page}`;
+                
+                // Get array of next links
                 let nextLinks = deletePreviousOrNextLinks(JSON.parse(event.target.response)).links.slice(pageTo + 1);
+
+                // Merge current and next links arrays
                 let newArrayOfLinks = currentLinks.concat(nextLinks);
 
                 // Don't understand, why this link is used for, but change it for maintaining integrity of data
@@ -73,29 +86,29 @@ const CommentariesBlock = ({ initialURL }) => {
                     next_page_url: newNextPageUrl,
                 });
             }
-        )
-    }
+        );
+    };
 
     console.log(commentariesState);
 
     return ( 
             commentariesState === null ?
-            <h1>Loading...</h1>
+            <h1 className='commentaries_block_wrapper'>Loading...</h1>
         :
-            <div>
-            <CommentaryForm 
-                titleText='Enter commentary'
-                getComments={ getComments }
-                initialURL={ initialURL }
-                lastPageUrl={ commentariesState.last_page_url }
-            />
-            <CommentariesList 
-                commentariesState={commentariesState}
-                getComments={ getComments }
-                handleShowMoreClick={handleShowMoreClick}
-            />
+            <div className='commentaries_block_wrapper'>
+                <CommentaryForm 
+                    titleText='Enter commentary'
+                    getComments={ getComments }
+                    initialURL={ initialURL }
+                    lastPageUrl={ commentariesState.last_page_url }
+                />
+                <CommentariesList 
+                    commentariesState={commentariesState}
+                    getComments={ getComments }
+                    handleShowMoreClick={handleShowMoreClick}
+                />
             </div>
     );
-}
+};
 
 export default CommentariesBlock;
